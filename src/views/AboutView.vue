@@ -3,6 +3,9 @@
     <h1>
       This is an about page. It can only be viewed by authenticated users.
     </h1>
+    <h2>
+     test 1
+    </h2>
   </div>
 </template>
 
