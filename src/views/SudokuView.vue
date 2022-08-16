@@ -30,33 +30,35 @@
         </td>
       </tr>
     </div>
-    <div
-      class="buttons"
-      style="
-        margin: 0px 0px 0px 0px;
-        padding: 1px 1px 1px 1px;
-        border: 1px solid;
-        display: inline-block;
-      "
-    >
-      <tr>
-        <td
-          v-for="button in buttons"
-          :key="button.val"
-          class="data-cell"
-          :val="button.val"
-          @click="OnButtonClick"
-          :class="{
-            'dc-top': button.isTop,
-            'dc-left': button.isLeft,
-            'dc-bottom': button.isBottom,
-            'dc-right': button.isRight,
-            'dc-active_cell': button.isActive(),
-          }"
-        >
-          {{ button.val }}
-        </td>
-      </tr>
+    <div>
+      <div
+        class="buttons"
+        style="
+          margin: 0px 0px 0px 0px;
+          padding: 1px 1px 1px 1px;
+          border: 1px solid;
+          display: inline-block;
+        "
+      >
+        <tr>
+          <td
+            v-for="button in buttons"
+            :key="button.val"
+            class="data-cell"
+            :val="button.val"
+            @click="OnButtonClick"
+            :class="{
+              'dc-top': button.isTop,
+              'dc-left': button.isLeft,
+              'dc-bottom': button.isBottom,
+              'dc-right': button.isRight,
+              'dc-active_cell': button.isActive(),
+            }"
+          >
+            {{ button.val }}
+          </td>
+        </tr>
+      </div>
     </div>
   </div>
 </template>
