@@ -21,9 +21,12 @@
             'dc-left': col.isLeft,
             'dc-bottom': col.isBottom,
             'dc-right': col.isRight,
-            'dc-active_button': col.isActive(),
+            'dc-active_cell': col.isActive(),
             'dc-valued': col.isValued(),
             'dc-fixed': col.isFixed,
+            'dc-cursor': col.isCursor(),
+            'dc-same': col.isSame(),
+            'dc-error': col.isError(),
           }"
         >
           {{ col.val }}
@@ -52,7 +55,7 @@
               'dc-left': button.isLeft,
               'dc-bottom': button.isBottom,
               'dc-right': button.isRight,
-              'dc-active_cell': button.isActive(),
+              'dc-active_button': button.isActive(),
             }"
           >
             {{ button.val }}
@@ -98,6 +101,28 @@ export default defineComponent({
       Array.from(cells, (element, index_row) => {
         const row = { index: index_row, cols: [] };
         row.cols = Array.from(cells[index_row], (element, index_col) => {
+          function isCursor() {
+            return (
+              !(
+                index_row == active_cell.value.row &&
+                index_col == active_cell.value.col
+              ) &&
+              (index_row == active_cell.value.row ||
+                index_col == active_cell.value.col ||
+                (Math.floor(index_col / 3) ==
+                  Math.floor(active_cell.value.col / 3) &&
+                  Math.floor(index_row / 3) ==
+                    Math.floor(active_cell.value.row / 3)))
+            );
+          }
+          function isSame() {
+            return (
+              data.value[index_row].cols[index_col].val > 0 &&
+              data.value[index_row].cols[index_col].val ==
+                data.value[active_cell.value.row].cols[active_cell.value.col]
+                  .val
+            );
+          }
           const dt = {
             //index: index_col,
             col_ind: index_col,
@@ -120,6 +145,15 @@ export default defineComponent({
                 index_col == active_cell.value.col
               );
             },
+            isCursor: () => {
+              return isCursor() && !isSame();
+            },
+            isSame: () => {
+              return !isCursor() && isSame();
+            },
+            isError: () => {
+              return isCursor() && isSame();
+            },
           };
           return dt;
         });
@@ -136,9 +170,18 @@ export default defineComponent({
       if (
         !data.value[active_cell.value.row].cols[active_cell.value.col].isFixed
       ) {
-        active_button.value = event.target.attributes.val.value;
-        data.value[active_cell.value.row].cols[active_cell.value.col].val =
-          active_button.value;
+        if (
+          active_button.value == event.target.attributes.val.value &&
+          data.value[active_cell.value.row].cols[active_cell.value.col].val !==
+            null
+        ) {
+          data.value[active_cell.value.row].cols[active_cell.value.col].val =
+            null;
+        } else {
+          active_button.value = event.target.attributes.val.value;
+          data.value[active_cell.value.row].cols[active_cell.value.col].val =
+            active_button.value;
+        }
       }
     }
     return {
@@ -175,6 +218,10 @@ export default defineComponent({
 .dc-left {
   border-left: 2px solid;
 }
+.dc-error {
+  background-color: rgb(229, 151, 197);
+  color: white;
+}
 .dc-bottom {
   border-bottom: 2px solid;
 }
@@ -182,10 +229,22 @@ export default defineComponent({
   border-right: 2px solid;
 }
 .dc-active_cell {
-  background-color: blue;
+  background-color: rgb(163, 163, 206);
+  border-color: black;
+  color: white;
 }
 .dc-active_button {
-  background-color: blue;
+  background-color: rgb(163, 163, 206);
+  border-color: black;
+  color: white;
+}
+.dc-cursor {
+  background-color: rgb(211, 211, 233);
+  border-color: black;
+}
+.dc-same {
+  background-color: rgb(163, 163, 206);
+  border-color: black;
 }
 .buttons {
   margin-top: 1rem;
