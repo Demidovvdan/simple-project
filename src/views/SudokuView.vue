@@ -198,11 +198,12 @@ export default defineComponent({
 .data-cell {
   margin: 0;
   border: 1px solid;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
+  font-size: 1.5rem;
 }
 .dc-top {
   border-top: 2px solid;
