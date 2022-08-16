@@ -129,24 +129,18 @@ export default defineComponent({
     let active_cell = ref({ row: 0, col: 0 });
     let active_button = ref(0);
     function OnCellClick(event) {
-      // console.log("row=", event.target.attributes.row.value);
-      // console.log("col=", event.target.attributes.col.value);
       active_cell.value.row = event.target.attributes.row.value;
       active_cell.value.col = event.target.attributes.col.value;
     }
     function OnButtonClick(event) {
-      // console.log("row=", event.target.attributes.val.value);
-      // console.log("col=", event.target.attributes.col.value);
       if (
         !data.value[active_cell.value.row].cols[active_cell.value.col].isFixed
       ) {
         active_button.value = event.target.attributes.val.value;
-        // else active_button.value = event.target.attributes.val.value;
         data.value[active_cell.value.row].cols[active_cell.value.col].val =
           active_button.value;
       }
     }
-    // console.log(data.value);
     return {
       data,
       active_cell,
@@ -161,7 +155,6 @@ export default defineComponent({
 
 <style scoped>
 .data-cell {
-  /* padding: 10px 16px; */
   margin: 0;
   border: 1px solid;
   width: 50px;
