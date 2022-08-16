@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import SudokuView from "../views/SudokuView.vue";
 import { getCurrentUser } from "@/plugins/firebase";
 
 const router = createRouter({
@@ -9,6 +10,11 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: HomeView,
+    },
+    {
+      path: "/sudoku",
+      name: "sudoku",
+      component: SudokuView,
     },
     {
       path: "/about",

@@ -25,6 +25,7 @@ onAuthStateChanged(auth, (user) => {
       <div class="container">
         <nav class="flex space-x-4 w-full">
           <router-link to="/">Home</router-link>
+          <router-link to="/sudoku">Sudoku</router-link>
           <router-link v-if="store.isLoggedIn" to="/about">About</router-link>
           <router-link v-if="store.isLoggedIn" to="/secret">Secret</router-link>
           <router-link v-if="!store.isLoggedIn" to="/login">Login</router-link>
