@@ -101,12 +101,15 @@ export default defineComponent({
       Array.from(cells, (element, index_row) => {
         const row = { index: index_row, cols: [] };
         row.cols = Array.from(cells[index_row], (element, index_col) => {
+          function isActive() {
+            return (
+              index_row == active_cell.value.row &&
+              index_col == active_cell.value.col
+            );
+          }
           function isCursor() {
             return (
-              !(
-                index_row == active_cell.value.row &&
-                index_col == active_cell.value.col
-              ) &&
+              !isActive() &&
               (index_row == active_cell.value.row ||
                 index_col == active_cell.value.col ||
                 (Math.floor(index_col / 3) ==
@@ -139,12 +142,7 @@ export default defineComponent({
               }
               return false;
             },
-            isActive: () => {
-              return (
-                index_row == active_cell.value.row &&
-                index_col == active_cell.value.col
-              );
-            },
+            isActive: isActive,
             isCursor: () => {
               return isCursor() && !isSame();
             },
