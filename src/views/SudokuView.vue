@@ -80,7 +80,7 @@ const cells = [
   "240900000",
 ];
 export default defineComponent({
-  name: "SudokuView",
+  name: "SudokuView2",
   setup() {
     let buttons = ref(
       Array.from({ length: 9 }, (element, index_col) => {
