@@ -218,8 +218,8 @@ export default defineComponent({
   border-left: 2px solid;
 }
 .dc-error {
-  background-color: rgb(229, 151, 197);
-  color: white;
+  background-color: rgb(0, 0, 0);
+  color: rgb(21, 255, 0);
 }
 .dc-bottom {
   border-bottom: 2px solid;
@@ -228,9 +228,9 @@ export default defineComponent({
   border-right: 2px solid;
 }
 .dc-active_cell {
-  background-color: rgb(163, 163, 206);
+  background-color: rgb(105, 0, 0);
   border-color: black;
-  color: white;
+  color: rgb(36, 202, 253);
 }
 .dc-active_button {
   background-color: rgb(163, 163, 206);
@@ -242,7 +242,7 @@ export default defineComponent({
   border-color: black;
 }
 .dc-same {
-  background-color: rgb(163, 163, 206);
+  background-color: rgb(100, 100, 100);
   border-color: black;
 }
 .buttons {

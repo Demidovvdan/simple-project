@@ -122,7 +122,7 @@ export default defineComponent({
 }
 .dc-error {
   background-color: rgb(229, 151, 197);
-  color: white;
+  color: rgb(253, 0, 0);
 }
 .dc-bottom {
   border-bottom: 2px solid;
